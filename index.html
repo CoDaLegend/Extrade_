@@ -154,15 +154,20 @@
     }
     .first{
       background-color: black;
-      width: 100%;
+      width: 115%;
       height: 100%;
       color: white;
       display: flex;
       flex-direction: column;
-      padding: 25px;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
     @media (min-width: 1025px) {
       .first{
+        width: 100%;
+        justify-content: space-between;
+        align-items: stretch;
         padding: 70px;
       }
     }
@@ -416,7 +421,7 @@
     /* Second */
 
      .bigbox {
-            width: 100%;
+            width: 120%;
             height: auto;
             background-color: black;
             display: flex;
@@ -424,13 +429,20 @@
             gap: 10px;
             flex-direction: row;
             border-radius: 20px;
-            padding: 20px;
+            padding: 50px;
         }
+        @media (min-width:1024px){
+      .bigbox{
+        margin-right: 0px;
+        width: 100%;
+        padding: 20px;
+      }
+    } 
         .smallbox {
-            flex: 1 1 50px;
+            flex: 1 1 40%;
             height: 530px;
             background-color: black;
-            min-width: 200px;
+            min-width: 300px;
             background-image: url(https://cdn2.etrade.net/1/25102412160.0/aempros/content/dam/etrade/retail/en_US/images/home/home-brokerage-device.jpg);
             border-radius: 10px;
             background-position: center;
@@ -441,9 +453,9 @@
         .smallbox2 {
           background-color: transparent;
             display: flex;
-            flex: 1 1 500px;
+            flex: 1 1 40%;
             height: 250px;
-            min-width: 200px;
+            min-width: 300px;
             flex-direction: column;
             text-align: center;
             color: white;
@@ -589,7 +601,7 @@
     .white{
       background-color: white;
       width: 100%;
-      height: 370px;
+      height: 100%;
       display: flex;
       flex-direction: column;
       padding: 15px;
@@ -630,7 +642,7 @@
     /*Mid Image*/
 
     .midclose{
-      width: 100%;
+      width: 115%;
       height: 130vh;
       background-color: black;
       display: flex;
@@ -643,6 +655,7 @@
     }
     @media (min-width: 1025px){
       .midclose{
+        width: 100%;
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -706,7 +719,7 @@
 
     .third{
       background-color: whitesmoke;
-      width: 100%;
+      width: 115%;
       height: 100%;
       color: black;
       display: flex;
@@ -721,8 +734,9 @@
         font-size: 1.3em;
       }
     }
-    @media (min-width:1024px){
+    @media (min-width:1025px){
       .third{
+        width: 100%;
         font-size: 1.6em; 
       }
     }
@@ -797,11 +811,11 @@
     .footer{
       background-color: #030303;
       color: white;
-      height: 80%;
-      padding: 20px;
+      height: 90%;
+      padding: 10px;
       display: flex;
       flex-direction: column;
-      flex: 100%;
+      width: 115%;
       flex-wrap: wrap;
       gap: 20px;
     }
@@ -811,8 +825,10 @@
           justify-content: space-evenly;
         }
       }
-    @media (min-width:1024px){
+    @media (min-width:1025px){
       .footer{
+        width: 100%;
+          flex: 100%;
           flex-direction: row;
           justify-content: space-evenly;
         }
@@ -918,10 +934,11 @@
       text-align: left;
       padding: 1px;
       min-width: 400px;
-      flex: 1 1 30%;
+      flex: 1 1 20%;
     }
     @media(min-width:1025px){
       .news{
+        flex: 1 1 30%;
         font-size: 3em;
         padding: 20px;
       }
@@ -945,7 +962,7 @@
     }
     button{
       background-color: gray;
-      width: 13%;
+      width: 15%;
       height: 5vh;
       display: flex;
       justify-content: center;
@@ -960,13 +977,18 @@
 
     .footend{
       background-color: black;
-      width: 100%;
+      width: 115%;
       height: 20vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding-bottom: 10px;
+    }
+    @media (min-width:1025px){
+      .footend{
+        width: 100%;
+        }
     }
 
     .foot{
