@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Split Nav with Dropdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <style>
+    *  {
+      margin: 0;  
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    #home {
+      background: linear-gradient(to right, #0af, #00bfa6);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background-color: white;
+      color: black;
+      position: relative;
+      top: 0;
+      margin-right: 85px;
+      margin-left: 65px;
+      font-family: 'Montserrat';
+    }
+    .navbar0 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 15px 20px;
+      background-color: white;
+      color: black;
+      position: relative;
+      top: 0;
+      margin-right: 55px;
+      margin-left: 50px;
+      padding-top: 25px;
+    }
+    .center-logo {
+      order: 0;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      font-size: 30px;
+      color: black;
+    }
+
+    /* Hamburger lines */
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+    }
+    .nav-left,
+    .nav-right {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+    }
+    .nav-left{
+      gap: 18px;
+      margin-left: 20px;
+      font-weight: 600;
+      font-size: 12px;
+  }
+    .navbar.open .nav-left,
+    .navbar.open .nav-right {
+      display: flex;
+    }
+    .nav-left a,
+    .nav-right a {
+      color: black;
+      text-decoration: none;
+      margin: 8px 0;
+    }
+    .cont-right{
+      width: 150px;
+      height: 10px;
+      background-color: white;
+      display: flex;
+      gap: 10px;
+      margin-top: -20px;
+      font-size: 12px;
+    }
+    .cont-left{
+      width: 150px;
+      height: 10px;
+      background-color: white;
+      display: flex;
+      gap: 10px;
+      margin-top: -20px;
+      font-size: 12px;
+    }
+    .cont-left a,
+    .cont-right a {
+      color: rebeccapurple;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    nav button{
+      width: 150px;
+      height: 35px;
+      background-color: rgba(13, 2, 163, 0.781);
+      color: white;
+      font-size: 15px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: -170px;
+      border: none;
+    }
+    nav button:hover{
+      background-color: rebeccapurple;
+    }
+    .first{
+      background-color: black;
+      width: 100%;
+      height: 100%;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 25px;
+    }
+    @media (min-width: 1025px) {
+      .first{
+        padding: 70px;
+      }
+    }
+    .discovernow{
+      background-color: none;
+      width: 100%;
+      height: 290px;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .discovernow{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+    } 
+    @media (min-width: 1025px) {
+      .discovernow{
+        height: 120px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+     }
+    }
+    .discover{
+      background-color: none;
+      width: 450px;
+      height: 50%;
+      font-size: 40px;
+      font-family: 'montserrat';
+      font-weight: 700;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .discover{
+        width: 400px;
+      }
+    } 
+    @media (min-width: 1025px){
+      .discover{
+        width: 500px;
+       margin-left: 70px;
+      }
+    }
+    .now{
+      background-color: none;
+      width: 450px;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 17px;
+      flex-direction: column;
+    }
+    @media (min-width: 1025px){
+      .now{
+        width: 500px;
+       margin-left: 70px;
+       padding-bottom: 35px;
+      }
+    }
+    .first button{
+      width: 150px;
+      height: 35px;
+      background-color: rgba(61, 25, 190, 0.925);
+      color: white;
+      font-size: 15px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 300px;
+      border: none;
+    }
+    @media (min-width: 1025px){
+      .first button{
+        margin-right: 350px;
+      }
+    }
+    .first button:hover{
+      opacity: 0.7;
+    }
+    .disclose{
+      background-color: none;
+      width: 100%;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .get{
+      background-color: none;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+      font-weight: 550;
+      margin-top: 20px;
+      text-align: center;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .get{
+        font-size: 2.5em;
+        margin-top: 50px;
+        margin-bottom: -30px;
+      }
+    } 
+     @media (min-width: 1025px) {
+      .get{
+        font-size: 2.5em;
+        margin-bottom: -30px;
+      }
+    }
+    .get2{
+      background-color: none;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: -30px;
+      text-align: center;
+    }
+     @media (min-width:601px) and (max-width: 1024px) {
+      .get{
+        font-size: 2.4em;
+      }
+    } 
+     @media (min-width: 1025px) {
+      .get{
+        font-size: 2.4em;
+      }
+    }
+    .adjust{
+      background-color: white;
+      width: 100%;
+      height: 400px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      margin-top: 50px;
+      padding: 10px;
+    }
+     @media (min-width:601px) and (max-width: 1024px) {
+      .adjust{
+        height: 250px;
+      }
+    } 
+     @media (min-width: 1025px) {
+      .adjust{
+        width: 50%;
+        height:300px;
+      }
+    }
+    .adjust button{
+      width: 200px;
+      height: 38px;
+      background-color:  rgba(61, 25, 190, 0.925);;
+      color: white;
+      font-size: 15px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 290px;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .adjust button{
+       width: 170px;
+       font-size: 0.5em;
+       margin-right: 420px;
+       margin-bottom: -50px;
+      }
+    }
+     @media (min-width:1024px){
+      .adjust button{
+        width: 180px;
+        font-size: 0.5em;
+        margin-right: 400px;
+        margin-bottom: -50px;
+      }
+    } 
+    .adjust button:hover{
+      opacity: 0.7;
+    }
+    .adjust a{
+      color: rebeccapurple;
+      text-decoration: azure;
+      text-align: center;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .adjust a{
+        margin-left: 180px;
+      }
+    }
+     @media (min-width:1024px){
+      .adjust a{
+        margin-left: 190px;
+      }
+    }
+    .adjust a:hover{
+      text-decoration: underline;
+    }
+    .black{
+      background-color: rgba(128, 128, 128, 0.199);
+      width: 100%;
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      border: solid grey 1px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .black{
+       height: 380px;
+       font-size: 12px;
+       margin-right: 420px;
+       margin-bottom: -50px;
+      }
+    }
+     @media (min-width:1024px){
+      .black{
+        width: 50%;
+        height: 400px;
+        margin-left: 610px;
+        margin-top: -350px;
+        font-size: 12px;
+      }
+    } 
+    .input,select {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      border-color: none;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: none;
+    }
+
+    /* Second */
+
+     .bigbox {
+            width: 100%;
+            height: auto;
+            background-color: black;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-direction: row;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .smallbox {
+            flex: 1 1 50px;
+            height: 530px;
+            background-color: black;
+            min-width: 200px;
+            background-image: url(https://cdn2.etrade.net/1/25102412160.0/aempros/content/dam/etrade/retail/en_US/images/home/home-brokerage-device.jpg);
+            border-radius: 10px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .smallbox2 {
+          background-color: transparent;
+            display: flex;
+            flex: 1 1 500px;
+            height: 250px;
+            min-width: 200px;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (min-width:601px) and (max-width: 1024px) {
+        .smallbox {
+             flex: 1 1 40%;
+        }
+        
+        .smallbox2{
+             flex: 1 1 40%;
+             height: 500px;
+            
+        }
+        }
+        @media (min-width:1024px){
+            .smallbox {
+             flex: 1 1 50%;
+             background-size: contain;
+            }
+
+            .smallbox2{
+             flex: 1 1 40%;
+             height: 500px;
+             
+        }
+        
+        }
+        .smallbox2 button{
+        width: 10vw;
+        height: 20vh;
+        background-color:  rgba(61, 25, 190, 0.925);
+        color: white;
+        font-size: 14px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0,5;
+        border: none;
+        }
+        
+        @media (min-width:601px) and (max-width:1024px){
+      .smallbox2 button{
+          width: 20vw !important;
+        }
+      }
+      @media (min-width:1025px){
+      .smallbox2 button{
+        width: 20vw !important;
+      }
+    } 
+        
+
+    /*Nothing*/
+
+
+    .nothingbox{
+      background-color: transparent;
+      width: 100%;
+      height: 150%;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .nothingbox{
+       width: 50%;
+       height: 50%;
+      }
+    }
+    @media (min-width:1024px){
+      .nothingbox{
+        margin-right: 180px;
+        width: 50%;
+        height: 40%;
+      }
+    }
+    .nothingclose{
+      width: 90%;
+      height: 50%;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .nothingclose{
+       width: 109%;
+       height: 60%;
+       font-size: 12px;
+       display: flex;
+       justify-content: space-between;
+      }
+    }
+    @media (min-width:1024px){
+      .nothingclose{
+        width: 100%;
+        display: flex;
+      }
+    }
+    .whiteclose1 button{
+      background-color: rgba(61, 25, 190, 0.925);
+      width: 50%;
+      height: 6vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 5px;
+    }
+    @media (min-width:601px) and (max-width:1024px){
+      .whiteclose1 button{
+          width: 20%;
+        }
+      }
+    @media (min-width:1024px){
+      .whiteclose1 button{
+          height: 5vh;
+          width: 15%;
+          margin-right: 30px;
+        }
+      }
+
+    /* White */
+
+     .whiteclose1{
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+    }
+    
+    .whiteclose{
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+    }
+    @media (min-width:1024px){
+      .whiteclose{
+        width: 100%;
+        display: flex;
+       justify-content: space-evenly;
+      }
+    }
+    .white{
+      background-color: white;
+      width: 100%;
+      height: 370px;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      border: solid rgba(128, 128, 128, 0.205) 1px;
+      margin-top: 20px;
+      border-radius: 15px;
+      padding-top: 70px;
+    }
+    @media (min-width:1024px){
+      .white{
+        width: 30%;
+        height:500px;
+        font-size: 1.4em;
+        padding-top: 50px;
+      }
+    }
+    .white a{
+      color:  rgba(61, 25, 190, 0.925);
+      text-decoration: none;
+    }
+     @media (min-width:601px) and (max-width: 1024px) {
+      .white a{
+        margin-top: -2px; 
+      }
+    }
+    @media (min-width:1024px){
+      .white a{
+        display: flex;
+        font-size: 0.7em; 
+        margin-left: -1px;
+      }
+    }
+    .white a:hover{
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+
+    /*Mid Image*/
+
+    .midclose{
+      width: 100%;
+      height: 130vh;
+      background-color: black;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px;
+      padding-top: 80px;
+    }
+    @media (min-width: 1025px){
+      .midclose{
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding-right: 50px;
+        padding-left: 50px;
+      }
+    }
+
+    .black2{
+      background-image: url(https://cdn2.etrade.net/1/25102116330.0/aempros/content/dam/etrade/retail/en_US/images/why-etrade/basic-1up-more-to-love-research.jpg);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 70vh;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 30%;
+    }
+    @media (min-width: 1025px){
+      .black2{
+        flex: 1.3 1 10%;
+      }
+    }
+    .small{
+      background-color: rgba(10, 10, 10, 0.836);
+      color: white;
+      height: 40vh;
+      display: flex;
+      flex-direction: column;
+      border: solid rgba(128, 128, 128, 0.205) 2px;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: -150px;      
+    }
+     @media (min-width: 1025px){
+      .small{
+        flex: 1 1 1%;
+        margin-right: 0px;
+        margin-top: 0px;
+      }
+    }
+
+    .small button{
+      width: 100%;
+      height: 100%;
+      background-color:  rgba(128, 128, 128, 0.205);
+      font-size: 15px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0,5;
+      border: solid rgba(128, 128, 128, 0.205) 2px;
+    }
+    .small button:hover{
+      opacity: 0.7;
+    }
+
+    /* Third */
+
+    .third{
+      background-color: whitesmoke;
+      width: 100%;
+      height: 100%;
+      color: black;
+      display: flex;
+      flex-direction: column; 
+      padding-left: 50px;
+      padding: 30px;
+      padding-top: 90px;
+      margin-bottom: 50px;
+    }
+    @media (min-width:601px) and (max-width: 1024px) {
+      .third{
+        font-size: 1.3em;
+      }
+    }
+    @media (min-width:1024px){
+      .third{
+        font-size: 1.6em; 
+      }
+    }
+    .extrade{
+      width: 100%;
+    }
+    @media (min-width:1024px){
+      .extrade{
+        width: 80%;
+      }
+    }
+    .redenclose{
+      background-color: none;
+      width: 100%;
+      height: 150px;
+      display: flex;  
+      align-items: center;
+      padding-right: 50px;
+      margin-top: 20px;
+    }
+    .red{
+      background-color: none;
+      width: 110px;
+      height: 70px;
+    }
+    @media (min-width:1024px){
+      .red{
+        width: 80px;
+        height: 60px;
+        margin-bottom: 30px;
+      }
+    }
+    .redbro{
+      background-color: none;
+      color: black;
+      width: 65%;
+      height: 50px;
+      padding-right: 20px;
+      font-size: 14px;
+      margin-left: 60px;
+      margin-bottom: 10px;
+    }
+    @media (min-width:1024px){
+      .redbro{
+        font-size: 0.5em;
+      }
+    }
+    .third a{
+      color:  rgba(61, 25, 190, 0.925);
+      text-decoration: none;
+    }
+      @media (min-width:1024px){
+      .third a{
+        font-size: 0.6em;
+      }
+    }
+    .third a:hover{
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+    .get3 a{
+      color:  rgba(61, 25, 190, 0.925);
+      text-decoration: none;
+    }
+    .get3 a:hover{
+      text-decoration: underline;
+      opacity: 0.2;
+    }
+
+    /*Footer*/
+
+    .footer{
+      background-color: #030303;
+      color: white;
+      height: 80%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 100%;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+     @media (min-width:601px) and (max-width:1024px){
+      .footer{
+          flex-direction: row;
+          justify-content: space-evenly;
+        }
+      }
+    @media (min-width:1024px){
+      .footer{
+          flex-direction: row;
+          justify-content: space-evenly;
+        }
+    }
+
+    /*Headlines*/
+
+     .headlines{
+      background-color: transparent;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      flex-direction: 1 1 30%;
+      gap: 5px;
+    }
+    @media (min-width:601px) and (max-width:1024px){
+      .headlines{
+          border-left: 1px solid grey;
+          justify-content: space-evenly;
+        }
+      }
+    @media (min-width:1024px){
+      .headlines{
+          border-left: 1px solid grey;
+          border-top: 1px solid grey;
+          justify-content: space-evenly;
+          gap: 20px;
+          margin-left: 30px;
+          margin-right: 50px;
+          padding-left: 10px;
+        }
+      }
+
+    .headlines a{
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+    }
+    @media(min-width:1025px){
+      .headlines{
+          font-weight: 800;
+      }
+    }
+
+    .headlines a:hover{
+      color: rebeccapurple;
+      text-decoration: underline;
+    }
+
+    /*Headlines2*/
+
+    .headlines2{
+      background-color: transparent;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      flex-direction: 1 1 50%;
+      gap: 5px;
+      min-width: 100px;
+    }
+    @media (min-width:601px) and (max-width:1024px){
+      .headlines2{
+          border-left: 1px solid grey;
+          justify-content: space-evenly;
+        }
+      }
+    @media (min-width:1024px){
+      .headlines2{
+          border-left: 1px solid grey;
+          border-top: 1px solid grey;
+          padding-left: 10px;
+          justify-content: space-evenly;
+          gap: 20px;
+          margin-right: 100px;
+        }
+      }
+
+    .headlines2 a{
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+    }
+    @media(min-width:1025px){
+      .headlines2{
+          font-weight: 800;
+      }
+    }
+
+    .headlines2 a:hover{
+      color: rebeccapurple;
+      text-decoration: underline;
+    }
+
+    /*News*/
+
+    .news{
+      background-color: white;
+      color: black;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      font-size: 30px;
+      text-align: left;
+      padding: 1px;
+      min-width: 400px;
+      flex: 1 1 30%;
+    }
+    @media(min-width:1025px){
+      .news{
+        font-size: 3em;
+        padding: 20px;
+      }
+    }
+
+    /*Form*/
+    
+    form{
+      width: 70%;
+      height: 10vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    form input{
+      height: 30vh;
+      margin-bottom: 1%;
+      border-radius: 5px;
+    }
+    button{
+      background-color: gray;
+      width: 13%;
+      height: 5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /*Footend*/
+
+    .footend{
+      background-color: black;
+      width: 100%;
+      height: 20vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 10px;
+    }
+
+    .foot{
+      background-color: transparent;
+      width: 95%;
+      height: 0vh;
+    }
+
+
+
+
+    /* Desktop View */
+    @media (min-width: 768px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .navbar {
+        flex-wrap: nowrap;
+      }
+
+      .center-logo {
+        order: 0;
+        width: auto;
+        margin: 0;
+      }
+
+      .nav-left,
+      .nav-right {
+        display: flex !important;
+        flex-direction: row;
+        width: auto;
+        padding: 0;
+      }
+      .nav-left a,
+      .nav-right a {
+        margin: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar0" id="navbar">
+
+    <div class="cont-left">
+      <a href="#home">Banking</a>
+      <a href="#about">Stock Plans</a>
+    </div>
+
+    <div class="cont-right">
+      <div class="dropdown" id="dropdown">
+        <a href="#projects">Contact Us </a></div>
+      <a href="#contact">Log On</a>
+    </div>
+  </nav>
+
+   <!--Real Navbar-->
+
+   <nav class="navbar" id="navbar">
+
+    <!-- Hamburger (3 lines) -->
+    <div class="menu-toggle" id="menu-toggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+     <div class="center-logo">
+        <image src="https://cdn2.etrade.net/1/22060112050.0/aempros/content/dam/etrade/retail/en_US/images/global/logos/etrade-from-MS.svg" width="100px%" height="100px"></image>
+        <div class="nav-left">
+      <a href="#home" class="active">Account Types</a>
+      <a href="#about">Investment Choices</a>
+      <a href="#home" class="active">New To Investing</a>
+      <a href="#about">Trading</a>
+      <a href="#home" class="active">Pricing and Rates</a>
+      <a href="#about">Knowledge</a>
+    </div>
+     </div>
+
+    <div class="nav-right">
+      <button>
+       <a href=" https://express.etrade.com/etx/rtao/ma/account-category" style="color: white;" >Open an Account</a>
+        </button>
+    </div>
+  </nav>
+
+  <!-- Sections -->
+  
+  <div class="first">
+
+  <div class="discovernow">
+    <div class="disclose">
+    <div class="discover">Discover even more  to love about E*TRADE</div> 
+    <div class="now">Now you can invest on your own and speak to a pro when you are ready. <br><br>
+        <button>Get Started</button>
+    </div> 
+  </div>
+   </div>
+
+    <image src="https://cdn2.etrade.net/1/25102117160.0/aempros/content/dam/etrade/retail/en_US/images/why-etrade/hero-homepage-more-to-love.jpg" height="100%" width="100%"></image>
+   
+      <div class="get">
+        <p>
+            Get up to $1,000 for a limited time<sup>1</sup>
+        </p>
+    </div>
+
+    <div class="get2">
+       <p style="font-size: 17px;">
+        Open and fund a new brokerage account with a qualifying
+        deposit by January 31, 2026. Terms apply.
+       </p>
+    </div>
+    
+
+    <!--Adjust-->
+
+    <div class="adjust">
+        <b style="color: black;font-size: 18px;font-family: 'montserrat';">
+            Adjust your funding and watch your bonus increase
+        </b> <br>
+
+        <p style="color: black;font-family: 'montserrat';font-size: 13px;">
+            Offer valid for new E*TRADE clients opening one new eligible 
+            brokerage (non-retirement) account by 01/31/26 and funded 
+            within 60 days of account opening with $1,000 or more of new
+            funds or securities.
+        </p> <br>
+
+        <p style="color: rebeccapurple;font-size: 25px;font-weight: 600;">Promo code 'OFFER25'</p> <br>
+
+        <button><b style="font-size: 16px;">Open an Account</b></button> <br>
+
+        <a href="#">Learn More &#8594;</a>
+    </div>
+
+    <div class="black">
+        <p>
+            Cash credit<br><br>
+            <p style="font-size: 40px;">$50</p>
+        </p> <br>
+        <p>
+            Deposit amount<sup>*</sup><br><br>
+            <p style="font-size: 40px;">$1,000</p>
+        </p> <br><br><br><br>
+
+         <label for=" ">Funding Amount </label>
+             <select name="Select" id="Select" placeholder="Select">
+                <option value="html" disabled selected hidden>Select</option>
+                <option value="html"> $1,000-$4,999</option> <br>
+                <option value="html"> $5,000-$19,999</option> <br>
+                <option value="html"> $20,000-$99,999</option><br>
+                <option value="html"> $100,000-$199,999</option><br>
+                <option value="html"> $200,000-$499,999</option><br>
+                <option value="html"> $500,000-$999,999</option><br>
+                <option value="html"> $1,000,000-$1,499,999</option><br>
+                 <option value="html"> $1,500,000-$1,999,999</option><br>
+                 <option value="html"> $2,000,000-$4,999,999</option><br><br>
+                <option value="html"> $5,000,000+</option><br>
+            </select> <br><br>
+
+            <p style="text-align: center;">
+                *Cash credits will be granted based on deposits of 
+                new funds or securities from external accounts made 
+                within 60 calendar days of account opening.
+            </p>
+    </div>
+    </div>
+    
+
+    <!--Investing-->
+
+      <div class="whiteclose1">
+     <div class="bigbox">
+        <div class="smallbox"></div>
+        <div class="smallbox2">
+             <p style="font-size: 35px;font-weight: 700;">Investing should be this easy</p><br><br>
+           <p style="font-family: 'montserrat';font-size: 14px;margin-top: -20px;">Trade stocks, ETFs, options, and more—with $0
+            commissions, intuitive platforms, and substantial
+            control. Other fees may apply.<sup>2</sup></p><br>
+           <button>Open a brokerage account</button>
+        </div>
+    </div><br><br><br><br><br>
+
+        <!--Nothing-->
+
+        <div class="nothingclose">
+          <div class="nothingbox">
+            <p style="font-size: 42px;font-weight: 500;"><b>Nothing to hide here, just transparent  pricing and rates you
+            can count on.</b>
+            </p>
+          </div> <br>
+          <button>Open an account</button><br>
+          <p><a href="#">View all pricing and rates &#8594;</a></p>
+        </div><br>
+
+        <!--Whiteboxes-->
+        
+        <div class="whiteclose">
+          <div class="white">
+         <p style="font-size: 50px;font-weight: 600;">$0</p>
+         <br><br><br><br> 
+         <b style="font-size: 20px;">Commission trades<sup>2</sup></b><br>
+         <p style="color: grey;">Stocks, options, mutual funds and ETFs</p><br><br>
+
+         <a href="#"><b>Learn more  &#8594;</b></a>
+        </div>
+
+        <div class="white">
+         <p style="font-size: 50px;font-weight: 600;">$0.65</p>
+         <br><br><br><br>
+         <b style="font-size: 20px;">Options contracts<sup>2</sup></b><br>
+         <p style="color: grey;">50¢ with 30+ trades per quarter<sup>2</sup></p><br><br><br>
+          
+         <a href="#"><b>Learn more  &#8594;</b></a>
+        </div>
+
+        <div class="white">
+         <p style="font-size: 50px;font-weight: 600;">$1.50</p>
+         <br><br><br><br>
+         <b style="font-size: 20px;">Futures contracts</b><br>
+         <p style="color: grey;font-size: 21px;">Per contract, per side + fees (excluding cryptocurrency futures)<sup>3</sup></p><br><br>
+          
+         <a href="#"><b>Learn more  &#8594;</b></a>
+        </div>
+        </div>
+
+        <div class="whiteclose">
+        <div class="white">
+         <p style="font-size: 50px;font-weight: 600;">$1.0</p>
+         <br><br><br>
+         <b style="font-size: 20px;">Per bond<sup>4</sup></b><br>
+         <p style="color: grey;">Minimum $10, maximum $250</p><br><br><br><br>
+          
+         <a href="#"><b>Learn more  &#8594;</b></a>
+        </div>
+
+        <div class="white">
+         <p style="font-size: 50px;font-weight: 600;">3.75% APY<sup style="font-size: 25px;">5</sup></p>
+         <br><br><br>
+         <b style="font-size: 20px;">Premium Savings Account</b><br>
+         <p style="color: grey;">From Morgan Stanley Private Bank, National Association, Member FDIC</p><br><br>
+          
+         <a href="#"><b>Learn more  &#8594;</b></a>
+        </div>
+
+        <div class="white">
+         <p style="font-size: 50px;font-weight: 600;">2.00% APY<sup style="font-size: 25px;">6</sup></p>
+         <br><br><br>
+         <b style="font-size: 20px;">Max-Rate Checking Account</b><br>
+         <p style="color: grey;font-size: 21px;">From Morgan Stanley Private Bank, National Association, Member FDIC<sup>7</sup></p><br><br>
+          
+         <a href="#"><b>Learn more  &#8594;</b></a>
+        </div><br><br><br>
+        </div>
+     </div>
+
+       <p style="text-align: center;font-family: 'montserrat';">Other fees may apply. For more information about pricing, visit
+        <a href="visit etrade.com/pricing.">etrade.com/pricing.</a>
+       </p><br><br><br>
+     
+
+     <!--Mid Image-->
+
+    <div class="midclose">
+       <div class="black2"></div>
+        
+      <div class="small">
+        <b style="font-size: 25px;">Expert research and insights <br> from Morgan Stanley</b> <br>
+
+        <p>Real-time market news, analyst reports, and <br> exclusive Morgan Stanley research to guide 
+          your <br> investment strategy.
+        </p> <br><br>
+
+        <button><b>Explore library</b></button>
+      </div>
+    </div>
+
+      <!--Third-->
+      <!--Awards-->
+
+      <div class="third">
+        <b style="font-size: 32px;font-weight: 800;">Awards and recognition</b><br><br>
+        <div class="extrade">
+          <b style="font-size: 46px;font-weight: 700;">E*TRADE was awarded #1 for Research in
+          Kiplinger's 2025 Best Online Broker Review.
+          </b>
+        </div>
+
+        <div class="redenclose">
+          <div class="red"><image src="https://cdn2.etrade.net/1/25102414180.0/aempros/content/dam/etrade/retail/en_US/images/awards/thumbnail-award-kiplinger-120x85.png" width="100%" height="100%" ></image> </div>
+          <div class="redbro"><b>Kiplinger's </b>2025 Best Online Broker for Research<sup>8</sup></div>
+        </div>
+
+        <a href="#">View all awards &#8594;</a><br><br><br><hr><br><br><br><br><br><br>
+
+        <!--Get Answers-->
+
+        <b style="font-size: 42px;font-family: 'montserrat';text-align: center;">Get answers to your questions</b>
+        <a href="#" style="text-align: right;">Expand all</a><br>
+
+          <p>A bank's ability to provide clear and efficient answers is critical for building customer 
+            trust and loyalty. In fact, the quality of customer service can differentiate one bank from 
+            another. For example, being able to explain complex financial information in simple terms is 
+            a key skill for a banking employee. An omnichannel approach, where customer information is 
+            consistent across all communication channels, is particularly effective for delivering a 
+            seamless experience and preventing customers from having to repeat themselves.
+          </p><br><br>
+          
+          <p>
+            <h2>Digital channels:</h2><br>
+            <b>Live chat:</b> Provides real-time support for immediate assistance, and some are powered by AI chatbots that can resolve common issues.
+            <b>Mobile and online banking portals:</b> These channels offer self-service options, including access to FAQs, knowledge bases, and account-specific information.
+            <b>Email support:</b> Best for non-urgent queries or complex matters that require detailed explanations and a written record.
+            <b>Social media:</b> Many banks use social media to publicly and privately address customer concerns, which can boost transparency. <br><br> 
+            <h3>Traditional channels:</h3><br>
+            <b>In-person:</b> Direct, face-to-face interaction with a bank representative is still important for personal matters or complex issues where empathy is needed.
+            <b>Telephone support:</b> Offers immediate communication for quick problem-solving, though customers may face wait times. 
+            <br><br><br>
+            <h2>The Complexity of Banking Questions</h2><br>
+            The nature of banking and financial services means that customer questions can range from simple inquiries to highly complex issues. <br><br>
+            <b>Basic questions:</b> Many customer inquiries relate to common banking products, such as understanding the difference between checking and savings accounts, or the documents needed to open an account. <br><br>
+            <b> Complex or sensitive questions:</b>These may involve explaining interest rates, comparing different loan products, or understanding charges and discrepancies. These issues require clear communication from bank representatives to help customers feel confident about their finances. <br><br>
+            <b>Product and service questions:</b> Customers might ask about specific products, such as college savings plans, retirement accounts, or different types of loans. <br><br>
+            <b> Security and fraud questions:</b> With the rise of digital banking, customers frequently have questions about fraud prevention, protecting their information, and resolving security incidents. 
+          </p>
+      </div>
+
+      <!--Footer-->
+
+       <div class="footer">
+      
+        <div class="headlines">
+          <a href="#">HOME</a>
+          <a href="#">ABOUT</a>
+          <a href="#">TECHNOLOGY</a>
+          <a href="#">DEVELOPMENT</a>
+          <a href="#">LEARNING & EDUCATION</a>
+          <a href="#">CONTACT</a>
+        </div>
+
+        <div class="headlines2">
+          <a href="#">HOME</a>
+          <a href="#">ABOUT</a>
+          <a href="#">TECHNOLOGY</a>
+          <a href="#">DEVELOPMENT</a>
+          <a href="#">LEARNING & EDUCATION</a>
+          <a href="#">CONTACT</a>
+        </div>  
+      
+      <!--News-->
+
+      <div class="news">
+        <p>Subscribe to our Newsletter</p>
+        
+        <form>
+        <label for="email">Enter your email address:</label>
+        <input type="email" id="email" placeholder="Email">
+        </form>
+
+        <button type="submit">Submit</button>
+      </div>
+      </div>
+
+      <!--Footend-->
+
+      <div class="footend">
+        <div class="foot">
+        <hr> <br><br>
+        <p style="text-align: center; font-size: 14px; color: grey">
+           © 2025 Rakuten Clone — All Rights Reserved
+        </p>
+        </div>
+      </div>
+
+        
+
+     <!-- Script -->
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+    const allLinks = document.querySelectorAll('.nav-left a, .nav-right a');
+    const dropdown = document.getElementById('dropdown');
+
+    toggle.addEventListener('click', () => {
+      navbar.classList.toggle('open');
+    });
+
+    allLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        allLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        navbar.classList.remove('open');
+      });
+    });
+
+    dropdown.addEventListener('click', (e) => {
+      if (window.innerWidth < 768) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
