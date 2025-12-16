@@ -91,14 +91,16 @@
       background: black;
       margin: 5px 0;
     }
+    
     .nav-left,
-    .nav-right {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      text-align: center;
-      background-color: white;
-    }
+.nav-right {
+  display: none;                  /* Hidden by default on mobile */
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  padding: 20px 0;
+}
     .nav-left{
       gap: 18px;
       margin-left: 20px;
@@ -106,9 +108,9 @@
       font-size: 12px;
   }
     .navbar.open .nav-left,
-    .navbar.open .nav-right {
-      display: flex;
-    }
+.navbar.open .nav-right {
+  display: flex;                  /* This is the key line – shows them when open */
+}
     .nav-left a,
     .nav-right a {
       color: black;
@@ -821,7 +823,7 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 115%;
       flex-wrap: wrap;
       gap: 20px;
     }
@@ -940,7 +942,8 @@
       text-align: left;
       padding: 1px;
       min-width: 400px;
-      width: 200px !important;
+      width: 200px;
+      border-right: 1px solid black;
       padding: 10px;
     }
     @media(min-width:1025px){
@@ -1055,7 +1058,7 @@
 
    <!--Real Navbar-->
 
-   <nav class="navbar" id="navbar">
+   <nav class="navbar" id="main-navbar">
 
     <!-- Hamburger (3 lines) -->
     <div class="menu-toggle" id="menu-toggle">
@@ -1376,7 +1379,7 @@
      <!-- Script -->
   <script>
     const toggle = document.getElementById('menu-toggle');
-    const navbar = document.getElementById('navbar');
+    const navbar = document.getElementById('main-navbar');
     const allLinks = document.querySelectorAll('.nav-left a, .nav-right a');
     const dropdown = document.getElementById('dropdown');
 
